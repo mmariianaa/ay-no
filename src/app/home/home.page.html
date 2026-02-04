@@ -1,20 +1,97 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Buscador de Estrellas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="container">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="weather-card">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="partly-sunny-outline"></ion-icon>
+            Clima Actual
+          </ion-card-title>
+          <ion-button fill="clear" size="small" (click)="refreshWeather()">
+            <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <div #weatherCard></div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="search-card">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Búsqueda de Estrellas</ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="stacked">Nombre de la Estrella</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="searchTerm"
+              placeholder="Ej: Sirius, Vega, Betelgeuse"
+              clearInput>
+            </ion-input>
+          </ion-item>
+          
+          <div class="button-container">
+            <ion-button 
+              expand="block" 
+              color="primary" 
+              (click)="searchStars()">
+              <ion-icon name="search-outline" slot="start"></ion-icon>
+              Buscar Estrellas
+            </ion-button>
+            
+            <ion-button 
+              expand="block" 
+              color="medium" 
+              fill="outline" 
+              (click)="clearSearch()">
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Ver Todas las Estrellas
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Tabla de Resultados -->
+    <div class="table-section">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Estrellas Encontradas</ion-card-title>
+          <ion-card-subtitle>
+            {{ filteredStars.length }} {{ filteredStars.length === 1 ? 'estrella' : 'estrellas' }} encontradas
+          </ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <div class="table-container">
+            <table #starsTable class="stars-table">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">Imagen</th>
+                  <th>Nombre</th>
+                  <th>Tipo</th>
+                  <th style="width: 140px;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- La tabla se llenará dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

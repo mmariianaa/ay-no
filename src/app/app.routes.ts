@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 export const routes: Routes = [
   {
@@ -9,5 +10,11 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  },
+  }
 ];
+// el mendigo httpclient MENDIGO
+export const appConfig = {
+  providers: [
+    provideHttpClient(),
+  ]
+};
