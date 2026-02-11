@@ -10,6 +10,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'noticias',
+    loadComponent: () => import('./noticias/noticias.page').then( m => m.NoticiasPage)
   }
 ];
 // el mendigo httpclient MENDIGO
